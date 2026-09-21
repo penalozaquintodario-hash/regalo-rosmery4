@@ -1,0 +1,970 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Rosmery ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(circle at 50% 20%, #172554 0%, #071126 35%, #020617 75%);
+    color:white;
+}
+
+/* =========================
+   CIELO
+========================= */
+
+.sky{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+    from{
+        opacity:.2;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+/* Luna */
+
+.moon{
+    position:absolute;
+    top:55px;
+    right:10%;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#fff9d6;
+    box-shadow:
+        0 0 30px #fff5a8,
+        0 0 70px rgba(255,240,150,.35);
+}
+
+/* =========================
+   FLORES
+========================= */
+
+.garden{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:38%;
+}
+
+.flower{
+    position:absolute;
+    bottom:0;
+    width:8px;
+    height:180px;
+    background:#176b36;
+    border-radius:10px;
+    transform-origin:bottom;
+    animation:moverFlor 3s ease-in-out infinite;
+}
+
+@keyframes moverFlor{
+    0%,100%{
+        transform:rotate(-2deg);
+    }
+    50%{
+        transform:rotate(3deg);
+    }
+}
+
+.flowerHead{
+    position:absolute;
+    top:-35px;
+    left:-28px;
+    width:65px;
+    height:65px;
+}
+
+.petal{
+    position:absolute;
+    width:25px;
+    height:35px;
+    background:#ffd21c;
+    border-radius:50%;
+    box-shadow:0 0 12px rgba(255,210,30,.7);
+}
+
+.p1{top:0;left:20px;}
+.p2{top:12px;left:38px;transform:rotate(65deg);}
+.p3{top:32px;left:31px;transform:rotate(125deg);}
+.p4{top:32px;left:8px;transform:rotate(180deg);}
+.p5{top:12px;left:0;transform:rotate(240deg);}
+
+.center{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#8b5a00;
+    border-radius:50%;
+    top:23px;
+    left:23px;
+    z-index:3;
+}
+
+.leaf{
+    position:absolute;
+    width:45px;
+    height:20px;
+    background:#239447;
+    border-radius:100% 0;
+    left:5px;
+    bottom:70px;
+    transform:rotate(-25deg);
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:
+    radial-gradient(circle at center,#172554,#020617 75%);
+    transition:opacity 1.5s ease;
+}
+
+#intro.ocultar{
+    opacity:0;
+    pointer-events:none;
+}
+
+.introText{
+    font-size:16px;
+    letter-spacing:3px;
+    color:#fde68a;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.envelope{
+    width:220px;
+    height:145px;
+    background:#fef3c7;
+    position:relative;
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow:
+    0 0 30px rgba(255,220,80,.4),
+    0 20px 50px rgba(0,0,0,.5);
+    animation:flotar 2s ease-in-out infinite;
+}
+
+@keyframes flotar{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-top:75px solid #fde68a;
+}
+
+.envelope:after{
+    content:"❤️";
+    position:absolute;
+    left:50%;
+    top:55%;
+    transform:translate(-50%,-50%);
+    font-size:35px;
+}
+
+.tocar{
+    margin-top:30px;
+    color:white;
+    font-size:14px;
+    animation:parpadear 1.5s infinite;
+}
+
+@keyframes parpadear{
+    50%{opacity:.4;}
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+#main{
+    position:relative;
+    z-index:10;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    opacity:0;
+    transition:opacity 2s ease;
+}
+
+#main.visible{
+    opacity:1;
+}
+
+.pequeno{
+    color:#fde68a;
+    font-size:14px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+}
+
+.nombre{
+    font-size:clamp(45px,12vw,105px);
+    font-weight:bold;
+    letter-spacing:8px;
+    color:#ffd21c;
+    text-shadow:
+    0 0 10px #ffd21c,
+    0 0 30px #facc15,
+    0 0 70px rgba(250,204,21,.5);
+    animation:brilloNombre 2s infinite alternate;
+}
+
+@keyframes brilloNombre{
+    from{
+        filter:brightness(.9);
+    }
+    to{
+        filter:brightness(1.4);
+    }
+}
+
+.teamo{
+    margin-top:10px;
+    font-size:clamp(35px,9vw,80px);
+    font-weight:bold;
+    color:#fff;
+    text-shadow:
+    0 0 10px #fff,
+    0 0 25px #f43f5e;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.05);
+    }
+}
+
+.mensaje{
+    margin-top:25px;
+    max-width:700px;
+    min-height:65px;
+    font-size:clamp(16px,4vw,23px);
+    line-height:1.6;
+    color:#f8fafc;
+    text-shadow:0 2px 5px #000;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.botones{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:25px;
+}
+
+button{
+    border:none;
+    border-radius:30px;
+    padding:14px 23px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btnCarta{
+    background:#facc15;
+    color:#422006;
+    box-shadow:0 0 20px rgba(250,204,21,.35);
+}
+
+.btnMusica{
+    background:rgba(255,255,255,.12);
+    color:white;
+    border:1px solid rgba(255,255,255,.25);
+}
+
+button:hover{
+    transform:scale(1.06);
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+.corazon{
+    position:fixed;
+    bottom:-30px;
+    font-size:22px;
+    animation:subir linear forwards;
+    z-index:20;
+}
+
+@keyframes subir{
+    0%{
+        transform:translateY(0) scale(.5) rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh) scale(1.5) rotate(30deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   PETALOS
+========================= */
+
+.petalo{
+    position:fixed;
+    top:-30px;
+    width:13px;
+    height:20px;
+    background:#ffd21c;
+    border-radius:100% 0;
+    animation:caer linear forwards;
+    z-index:15;
+}
+
+@keyframes caer{
+    to{
+        transform:
+        translateY(110vh)
+        translateX(100px)
+        rotate(500deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   CARTA
+========================= */
+
+#carta{
+    position:fixed;
+    inset:0;
+    background:rgba(2,6,23,.92);
+    backdrop-filter:blur(8px);
+    z-index:500;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.cartaBox{
+    max-width:700px;
+    max-height:85vh;
+    overflow:auto;
+    background:
+    linear-gradient(145deg,#fffdf5,#fff7d6);
+    color:#3f2a00;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:
+    0 0 50px rgba(250,204,21,.25),
+    0 25px 80px rgba(0,0,0,.6);
+    text-align:left;
+    animation:aparecer .8s ease;
+}
+
+@keyframes aparecer{
+    from{
+        transform:scale(.7) translateY(50px);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.cartaBox h2{
+    text-align:center;
+    color:#b45309;
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+.cartaBox p{
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:16px;
+}
+
+.firma{
+    text-align:center;
+    font-size:23px;
+    color:#b45309;
+    font-weight:bold;
+    margin-top:25px;
+}
+
+.cerrar{
+    display:block;
+    margin:25px auto 0;
+    background:#facc15;
+    color:#422006;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .moon{
+        width:65px;
+        height:65px;
+        right:8%;
+        top:30px;
+    }
+
+    .garden{
+        height:30%;
+    }
+
+    .flower{
+        height:120px;
+    }
+
+    .flowerHead{
+        transform:scale(.7);
+        transform-origin:center;
+    }
+
+    .nombre{
+        letter-spacing:4px;
+    }
+
+    .mensaje{
+        padding:0 15px;
+    }
+
+    .cartaBox{
+        padding:25px 20px;
+    }
+
+    .cartaBox p{
+        font-size:15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio id="musica" loop>
+    <source src="nuestra-cancion.mp3" type="audio/mpeg">
+</audio>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="intro">
+
+    <div class="introText">
+        ROSMERY ❤️<br><br>
+        TENGO UNA SORPRESA PARA TI
+    </div>
+
+    <div class="envelope" onclick="abrirSorpresa()"></div>
+
+    <div class="tocar">
+        💌 Toca el sobre para abrir tu sorpresa
+    </div>
+
+</div>
+
+<!-- =========================
+     CIELO
+========================= -->
+
+<div class="sky" id="sky">
+
+    <div class="moon"></div>
+
+</div>
+
+<!-- =========================
+     JARDÍN
+========================= -->
+
+<div class="garden" id="garden"></div>
+
+<!-- =========================
+     CONTENIDO
+========================= -->
+
+<div id="main">
+
+    <div class="pequeno">
+        PARA LA PERSONA QUE AMO
+    </div>
+
+    <div class="nombre">
+        ROSMERY
+    </div>
+
+    <div class="teamo">
+        TE AMO ❤️
+    </div>
+
+    <div class="mensaje" id="mensaje">
+        Aunque estamos lejos, mi corazón siempre encuentra el camino hacia ti. 🌻
+    </div>
+
+    <div class="botones">
+
+        <button class="btnCarta" onclick="abrirCarta()">
+            💌 Tengo algo que decirte
+        </button>
+
+        <button class="btnMusica" onclick="controlMusica()" id="btnMusica">
+            🎵 Música
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<div id="carta">
+
+    <div class="cartaBox">
+
+        <h2>🌻 Para Rosmery ❤️</h2>
+
+        <p>
+            Rosmery...
+        </p>
+
+        <p>
+            Quizás ahora mismo nos separen kilómetros,
+            pero quiero que sepas algo que la distancia
+            jamás podrá cambiar:
+        </p>
+
+        <p style="text-align:center;font-size:27px;font-weight:bold;color:#b45309;">
+            TE AMO. ❤️
+        </p>
+
+        <p>
+            Quisiera estar ahí contigo, mirarte a los ojos,
+            abrazarte fuerte y entregarte estas flores
+            amarillas personalmente.
+        </p>
+
+        <p>
+            Te extraño muchísimo.
+        </p>
+
+        <p>
+            A veces la distancia pesa, pero también me
+            recuerda lo importante que eres para mí.
+            Porque aunque no pueda tenerte cerca físicamente,
+            estás presente en mis pensamientos, en mis días
+            y en mi corazón.
+        </p>
+
+        <p>
+            Si pudiera pedirle un deseo a todas las estrellas
+            que están sobre nosotros, pediría que llegue
+            pronto el día en que ya no tengamos que
+            extrañarnos.
+        </p>
+
+        <p>
+            Quiero que llegue ese momento en el que pueda
+            verte, abrazarte y decirte todo esto frente a
+            frente.
+        </p>
+
+        <p style="text-align:center;font-size:25px;font-weight:bold;">
+            ROSMERY, TE AMO. ❤️🌻
+        </p>
+
+        <p>
+            Hasta entonces, te amo desde lejos,
+            te extraño de cerca y te llevo conmigo siempre.
+        </p>
+
+        <div class="firma">
+            Con todo mi amor ❤️
+        </div>
+
+        <button class="cerrar" onclick="cerrarCarta()">
+            🌻 Volver a la sorpresa
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+const sky = document.getElementById("sky");
+
+for(let i=0;i<170;i++){
+
+    const estrella=document.createElement("div");
+
+    estrella.className="star";
+
+    estrella.style.left=Math.random()*100+"%";
+    estrella.style.top=Math.random()*75+"%";
+
+    const tamaño=Math.random()*3+1;
+
+    estrella.style.width=tamaño+"px";
+    estrella.style.height=tamaño+"px";
+
+    estrella.style.animationDelay=(Math.random()*3)+"s";
+
+    sky.appendChild(estrella);
+}
+
+/* =========================
+   FLORES
+========================= */
+
+const garden=document.getElementById("garden");
+
+for(let i=0;i<25;i++){
+
+    const flor=document.createElement("div");
+
+    flor.className="flower";
+
+    flor.style.left=(Math.random()*100)+"%";
+
+    flor.style.height=(100+Math.random()*130)+"px";
+
+    flor.style.animationDelay=(Math.random()*3)+"s";
+
+    const head=document.createElement("div");
+
+    head.className="flowerHead";
+
+    for(let p=1;p<=5;p++){
+
+        const petalo=document.createElement("div");
+
+        petalo.className="petal p"+p;
+
+        head.appendChild(petalo);
+    }
+
+    const center=document.createElement("div");
+
+    center.className="center";
+
+    head.appendChild(center);
+
+    flor.appendChild(head);
+
+    const leaf=document.createElement("div");
+
+    leaf.className="leaf";
+
+    flor.appendChild(leaf);
+
+    garden.appendChild(flor);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+const mensajes=[
+
+    "Aunque estamos lejos... mi corazón está contigo. ❤️",
+
+    "Hay kilómetros entre nosotros, pero jamás entre nuestros corazones.",
+
+    "Quisiera estar ahí para abrazarte y entregarte estas flores. 🌻",
+
+    "Estas flores amarillas llevan hasta ti un poquito de mi amor.",
+
+    "Te extraño muchísimo, Rosmery... ❤️",
+
+    "La distancia puede separar nuestras manos, pero no nuestros corazones.",
+
+    "Si pudiera pedirle un deseo a las estrellas, pediría estar contigo.",
+
+    "Espero con ilusión el día en que podamos estar juntos.",
+
+    "Porque no quiero amarte solamente desde lejos...",
+
+    "Quiero abrazarte, mirarte y decirte esto frente a frente:",
+
+    "ROSMERY, TE AMO. ❤️🌻"
+
+];
+
+let indice=0;
+
+const mensaje=document.getElementById("mensaje");
+
+setInterval(()=>{
+
+    if(document.getElementById("main").classList.contains("visible")){
+
+        indice++;
+
+        if(indice>=mensajes.length){
+            indice=0;
+        }
+
+        mensaje.style.opacity=0;
+
+        setTimeout(()=>{
+
+            mensaje.textContent=mensajes[indice];
+
+            mensaje.style.opacity=1;
+
+        },500);
+
+    }
+
+},4000);
+
+/* =========================
+   SORPRESA
+========================= */
+
+function abrirSorpresa(){
+
+    const musica=document.getElementById("musica");
+
+    musica.play().catch(()=>{});
+
+    document.getElementById("intro").classList.add("ocultar");
+
+    setTimeout(()=>{
+
+        document.getElementById("main").classList.add("visible");
+
+    },700);
+
+    crearExplosion();
+
+}
+
+/* =========================
+   EXPLOSION DE CORAZONES
+========================= */
+
+function crearExplosion(){
+
+    for(let i=0;i<35;i++){
+
+        setTimeout(()=>{
+
+            crearCorazon();
+
+        },i*70);
+    }
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+function crearCorazon(){
+
+    const c=document.createElement("div");
+
+    c.className="corazon";
+
+    const corazones=["❤️","💛","💖","💕","💗"];
+
+    c.textContent=
+        corazones[Math.floor(Math.random()*corazones.length)];
+
+    c.style.left=Math.random()*100+"%";
+
+    c.style.fontSize=(15+Math.random()*25)+"px";
+
+    c.style.animationDuration=(5+Math.random()*5)+"s";
+
+    document.body.appendChild(c);
+
+    setTimeout(()=>{
+        c.remove();
+    },10000);
+}
+
+setInterval(()=>{
+
+    if(document.getElementById("main").classList.contains("visible")){
+        crearCorazon();
+    }
+
+},1000);
+
+/* =========================
+   PÉTALOS
+========================= */
+
+function crearPetalo(){
+
+    const p=document.createElement("div");
+
+    p.className="petalo";
+
+    p.style.left=Math.random()*100+"%";
+
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+
+    p.style.opacity=.7+Math.random()*.3;
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>{
+        p.remove();
+    },10000);
+}
+
+setInterval(()=>{
+
+    if(document.getElementById("main").classList.contains("visible")){
+        crearPetalo();
+    }
+
+},400);
+
+/* =========================
+   MÚSICA
+========================= */
+
+let reproduciendo=false;
+
+function controlMusica(){
+
+    const musica=document.getElementById("musica");
+
+    const boton=document.getElementById("btnMusica");
+
+    if(musica.paused){
+
+        musica.play();
+
+        boton.textContent="⏸️ Pausar música";
+
+        reproduciendo=true;
+
+    }else{
+
+        musica.pause();
+
+        boton.textContent="🎵 Música";
+
+        reproduciendo=false;
+
+    }
+
+}
+
+/* =========================
+   CARTA
+========================= */
+
+function abrirCarta(){
+
+    document.getElementById("carta").style.display="flex";
+
+}
+
+function cerrarCarta(){
+
+    document.getElementById("carta").style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>
+```
+
+
